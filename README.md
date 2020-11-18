@@ -1,15 +1,10 @@
-# sinyal
+# acdnet3
+Acoustic Classification using Deep Neural Net with 3 Blocks Neural Net
 
-Project mata kuliah Pengolahan Sinyal
+## To have ESC-50 and ESC-10 dataset is raw data form with .npz run the following command:
+_python common/esc_gen.py_
 
-# Audio self-labeling using optimal transport
-
-[Browse and listen to](https://mnuhurr.github.io/audio-self-labeling/) some selected example classes.
-
-An example configuration can be found in `settings.yaml`.
-DDP support is included in the code, but it is outdated.
-
-Steps to run:
-1. Edit `settings.yaml`
-2. Run `prepare_data.py`
-3. Run `train.py`
+## Running the application in tensorflow and keras:
+#### 1. Requiresments: tensorflow 2.2.0
+#### 2. Please look at the comments in main.py and make changes according to your need
+_python tf/main.py_
