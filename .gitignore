@@ -1,22 +1,4 @@
-
-# Python virtual environment
-audio_env/
-.venv/
-venv/
-
-# Dataset dan hasil pemrosesan
-data/
-
-# Python cache
-__pycache__/
-*.py[cod]
-
-# Model checkpoints dan hasil training
-checkpoints/
-runs/
-*.pt
-*.pth
-*.ckpt
-
-# Environment variables / secrets
-.env
+__pycache__
+.DS_Store
+*.ipynb
+*.out
