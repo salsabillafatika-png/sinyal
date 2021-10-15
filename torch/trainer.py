@@ -46,7 +46,7 @@ class Trainer:
             file_paths = glob.glob(net_path);
             if len(file_paths)>0 and os.path.isfile(file_paths[0]):
                 state = torch.load(file_paths[0], map_location=self.opt.device);
-                net = models.GetACDNetModel(self.opt.inputLength, 50, self.opt.sr, channel_config=state['config']).to(self.opt.device);
+                net = models.GetACDNetModel(channel_config=state['config']).to(self.opt.device);
                 if self.opt.retrain:
                     net.load_state_dict(state['weight']);
                 print('Model Loaded');
@@ -89,6 +89,8 @@ class Trainer:
                 optimizer.step();
 
                 running_loss += loss.item();
+                if batchIdx==4:
+                    break;
 
             tr_acc = (running_acc / n_batches)*100;
             tr_loss = running_loss / n_batches;
