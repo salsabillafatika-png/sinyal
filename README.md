@@ -11,6 +11,7 @@ Environmental sound classification on the edge: A pipeline for deep acoustic net
       publisher={Elsevier}
     }
 
+<<<<<<< HEAD
 #### Github url: https://github.com/mohaimenz/acdnet
 ## A. Training and Compressing ACDNet
 
@@ -73,7 +74,11 @@ To conduct retraining a pruned model, follow these steps:
 1. For 8-bit post training quantization, run: ```python torch/quantization.py``.`
 2. Provide model path. Make sure to provide the full path, such as: `/home/<username>/path/to/the/model.pt`.
 3. Provide the fold on which the model was validated.
+=======
+[Browse and listen to](https://mnuhurr.github.io/audio-self-labeling/) some selected example classes.
+>>>>>>> e4e3fb9 (add link to pages)
 
+An example configuration can be found in `settings.yaml`. DDP support is included in the code, but it is outdated.
 
 ### B. Rebuilding ACDNet20 in Tensorflow (TF)
 For deployment purpose we use Tensorflow and Tensorflow Lite.
