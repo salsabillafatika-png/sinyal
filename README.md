@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ACDNet and Deployment Pipeline
 ### Published as:
 Environmental sound classification on the edge: A pipeline for deep acoustic networks on extremely resource-constrained devices (url: https://arxiv.org/abs/2103.03483)
@@ -102,3 +103,7 @@ To rebuild ACDNet-20 from scratch in TF, follow these steps:
 ### C. ACDNet-20 on MCU
 The model will now be converted to TF Lite, quantized to 8-bit and then using TF Lite Micro, we will push the model to MCU for inferencing.
 **Please follow the instructions provided in README.md file inside `deployment` directory**
+=======
+# sinyal
+Project mata kuliah Pengolahan Sinyal
+>>>>>>> b94e7d5 (Initial commit)
