@@ -50,7 +50,12 @@ def main():
     logger.info(f'{segment_length=}, {segment_hop=}')
 
     # for generating gt labels
-    tags, labels = read_tags(cfg.get('fsd_meta_fn'))
+    fsd_meta_fn = cfg.get('fsd_meta_fn')
+    if not fsd_meta_fn:
+        raise ValueError("Missing 'fsd_meta_fn' in settings.yaml; set it to the FSD50K dev.csv metadata file.")
+    if not Path(fsd_meta_fn).is_file():
+        raise FileNotFoundError(f"FSD50K metadata file not found: {fsd_meta_fn}")
+    tags, labels = read_tags(fsd_meta_fn)
     label_idx = {label: k for k, label in enumerate(labels)}
 
     melspec = torchaudio.transforms.MelSpectrogram(
@@ -83,7 +88,9 @@ def main():
             'mels',
             (max_sz, n_mels, segment_length),
             maxshape=(max_sz, n_mels, segment_length),
-            chunks=(1, n_mels, segment_length))
+            chunks=(1, n_mels, segment_length),
+            compression='lzf',
+            shuffle=True)
 
         fname = h5_file.create_dataset(
             'fname',

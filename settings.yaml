@@ -1,14 +1,15 @@
 cache_dir: data/cache
 
 # for eval
-fsd50k_dir: path/to/fsd50k
+fsd50k_dir: D:/datasets/audio-dataset
+fsd_meta_fn: "D:/datasets/audio-dataset/metadata/collection/collection_dev.csv"
 
 # path where the hdf5 is created / where it is loaded from
-mel_fn: data/fsd50k-train-16khz-64mel-20ms-3.0-1.5.hdf
+mel_fn: D:/datasets/audio-dataset/processed/fsd50k-train-16khz-64mel-20ms-3.0-1.5.hdf
 
 # training audio
 audio_data_dirs:
-  - path/to/fsd50k/FSD50K.dev_audio
+  - "D:/datasets/audio-dataset/clips/dev" 
 
 # feature settings
 sample_rate: 16000
@@ -38,7 +39,7 @@ save_every: 10
 log_dir: data/logs
 
 batch_size: 512
-num_dataloader_workers: 20
+num_dataloader_workers: 6
 n_epochs: 200
 weight_decay: 1.0e-5
 clip_grad_norm: 10.0

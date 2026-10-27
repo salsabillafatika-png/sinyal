@@ -40,7 +40,8 @@ class HDF5MelDataset(torch.utils.data.Dataset):
                  noise_sigma: float = 0.0,
                  use_augmentation: float = True):
 
-        self.data = h5py.File(filename, 'r')
+        self.filename = Path(filename)
+        self._data = h5py.File(self.filename, 'r')
         n_files = self.data['mels'].shape[0]
 
         self.classes = torch.zeros(n_files, len(n_classes), dtype=torch.int64)
@@ -56,6 +57,18 @@ class HDF5MelDataset(torch.utils.data.Dataset):
         self.stretch_range = random_stretch_range
 
         self.use_augmentation = use_augmentation
+
+    @property
+    def data(self) -> h5py.File:
+        if self._data is None:
+            self._data = h5py.File(self.filename, 'r')
+        return self._data
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        # h5py file handles cannot be pickled; each worker opens its own reader.
+        state['_data'] = None
+        return state
 
     def __len__(self) -> int:
         return self.data['mels'].shape[0]
