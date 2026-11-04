@@ -13,7 +13,7 @@ class ValGenerator():
         #Initialization
         self.data = [(samples[i], labels[i]) for i in range (0, len(samples))];
         self.opt = options;
-        self.batch_size = options.batchSize // options.nCrops;
+        self.batch_size = len(samples);
         self.preprocess_funcs = self.preprocess_setup();
 
     def get_data(self):
@@ -70,14 +70,18 @@ if __name__=='__main__':
         opt.sr = sr;
         opt.inputLength = 66650 if sr == 44100 else 30225;
         mainDir = os.getcwd();
-        test_data_dir = os.path.join(mainDir, 'datasets/esc50/test_data_{}khz'.format(sr//1000));
+        npz_path = os.path.join(opt.data, opt.dataset, 'wav{}.npz'.format(opt.sr//1000));
+        if not os.path.exists(npz_path):
+            print('skip {} Hz: {} tidak ada'.format(sr, npz_path));
+            continue;
+        test_data_dir = os.path.join(mainDir, 'datasets/{}/test_data_{}khz'.format(opt.dataset, sr//1000));
         print(test_data_dir)
         if not os.path.exists(test_data_dir):
             os.mkdir(test_data_dir);
 
         val_sounds = [];
         val_labels = [];
-        dataset = np.load(os.path.join(opt.data, opt.dataset, 'wav{}.npz'.format(opt.sr // 1000)), allow_pickle=True);
+        dataset = np.load(npz_path, allow_pickle=True);
         for s in opt.splits:
             start_time = time.perf_counter();
             sounds = dataset['fold{}'.format(s)].item()['sounds'];

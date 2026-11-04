@@ -14,7 +14,7 @@ import wavio
 
 def main():
     mainDir = os.getcwd();
-    esc50_path = os.path.join(mainDir, 'datasets/esc50');
+    esc50_path = os.path.join(mainDir, 'datasets/esc10');
 
     if not os.path.exists:
         os.mkdir(esc50_path)
