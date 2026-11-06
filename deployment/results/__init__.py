@@ -1,2 +1,0 @@
-from results.evaluate_results import print_results
-from results.evaluate_activity_log import evaluate_log
