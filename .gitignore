@@ -1,15 +1,7 @@
 __pycache__
 .DS_Store
-*.ipynb
 *.out
 datasets/esc50
 venvesc50_repro/
 .venv/
 venv/
-*.pt
-*.weights
-esc50_repro/
-.venv/
-venv/
-*.pt
-*.weights
